@@ -1,6 +1,6 @@
 # assignmentTest
 
-Please download the zip and run index.html to review the exercise.
+Please download the zip and serve the folder from a webserver and access index.html though localhost.
 
 How I did it?
 I used some random json data and display them through angularjs
