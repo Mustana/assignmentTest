@@ -26,14 +26,14 @@
         </div>
         <div class="table-responsive">
             <table class="table table-bordered table-striped">
-                <tbody ng-repeat="emp in employees | filter: search">
+                <tbody ng-repeat="pol in policyData | filter: search">
                     <tr>
-                        <th colspan="3">{{emp.Name}}</th>
+                        <th colspan="3">{{pol.name}}</th>
                     </tr>
                      <tr>
-                        <td><span class="fa fa-phone" aria-hidden="true"></span> {{emp.phone}}</td>
-                        <td><span class="fa fa-envelope" aria-hidden="true"></span> {{emp.email}}</td>
-                        <td><span class="fa fa-file-text-o" aria-hidden="true"></span> Policy No. {{emp.policy}}</td>
+                        <td><span class="fa fa-phone" aria-hidden="true"></span> {{pol.phone}}</td>
+                        <td><span class="fa fa-envelope" aria-hidden="true"></span> {{pol.email}}</td>
+                        <td><span class="fa fa-file-text" aria-hidden="true"></span> Policy No. {{pol.policy}}</td>
                     </tr>
                 </tbody>
              </table>
@@ -50,18 +50,19 @@
     var app=angular.module("demoApp",[]);
     app.controller("mainCtrl",function($scope,$http){
         $http({
-            url:"employees.json",
+            url:"Policy.json",
             method:"get"
         }).then(function(resp){
-            console.log(resp)
-            $scope.employees=resp.data;
+            //console.log(resp)
+            $scope.policyData=resp.data;
         },function(resp){
-            console.log(resp);
-        })
-
-
-
-
+            //console.log(resp);
+        },
+        $scope.search = function (row) {
+           // console.log(row);
+            return !!((row.name.indexOf($scope.query || '') !== -1 || row.policy.indexOf($scope.query || '') !== -1));
+        }
+        )
     })
 
 
